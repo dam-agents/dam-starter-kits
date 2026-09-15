@@ -1,0 +1,57 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  kits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-save ajv ajv-formats yaml
+
+      - name: every kit and the index match the published schema
+        run: |
+          node --input-type=module -e '
+            import { readFileSync, readdirSync, existsSync } from "node:fs";
+            import { basename, join } from "node:path";
+            import { parse } from "yaml";
+            import Ajv from "ajv";
+            import addFormats from "ajv-formats";
+
+            const ajv = new Ajv({ strict: false, allErrors: true });
+            addFormats(ajv);
+            const compile = (f) => ajv.compile(JSON.parse(readFileSync(f, "utf8")));
+            const kitSchema = compile("kit.schema.json");
+            const catalogSchema = compile("catalog.schema.json");
+
+            const fail = (m) => { console.error("error: " + m); process.exitCode = 1; };
+            const errs = (v) => v.errors.map((e) => (e.instancePath || "/") + " " + e.message).join("; ");
+
+            const index = parse(readFileSync("catalog.yaml", "utf8"));
+            if (!catalogSchema(index)) fail("catalog.yaml: " + errs(catalogSchema));
+
+            const listed = new Set();
+            for (const entry of index?.kits ?? []) {
+              if (entry.gitUrl) continue;
+              const dir = entry.path;
+              listed.add(dir);
+              const file = join(dir, "kit.yaml");
+              if (!existsSync(file)) { fail(dir + ": no kit.yaml"); continue; }
+              const kit = parse(readFileSync(file, "utf8"));
+              if (!kitSchema(kit)) { fail(file + ": " + errs(kitSchema)); continue; }
+              if (kit.id !== basename(dir)) {
+                fail(file + ": id \"" + kit.id + "\" does not match its directory");
+                continue;
+              }
+              console.log("ok " + file);
+            }
+            for (const d of readdirSync("kits")) {
+              if (!listed.has("kits/" + d)) fail("kits/" + d + " is not listed in catalog.yaml");
+            }
+          '
