@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dam-agents/dam-starter-kits/main/catalog.schema.json
+# The kits this catalog offers. Each entry points at a directory holding a
+# kit.yaml, or at another repository with a pinned ref.
+#
+# An entry that names no ref is pinned to a commit by the platform when it
+# refreshes the catalog, so a kit always resolves to exact contents even
+# though this file moves.
+kits:
+  - path: kits/code-reviewer
