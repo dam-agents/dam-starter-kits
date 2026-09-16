@@ -21,6 +21,10 @@
       "type": "string",
       "minLength": 1
     },
+    "tagline": {
+      "type": "string",
+      "minLength": 1
+    },
     "category": {
       "type": "string",
       "enum": [
@@ -88,6 +92,37 @@
         }
       }
     },
+    "knowledgeBase": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "string",
+          "enum": [
+            "llm-wiki",
+            "plain-wiki"
+          ]
+        }
+      },
+      "required": [
+        "template"
+      ]
+    },
+    "install": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "harnessEnv": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        }
+      },
+      "required": [
+        "command"
+      ]
+    },
     "harnesses": {
       "minItems": 1,
       "type": "array",
@@ -101,6 +136,11 @@
         ]
       }
     },
+    "providers": {
+      "minItems": 1,
+      "type": "array",
+      "items": {}
+    },
     "seed": {
       "type": "object",
       "properties": {
@@ -111,6 +151,18 @@
         "ref": {
           "type": "string",
           "minLength": 1
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "into": {
+          "default": "work",
+          "type": "string",
+          "enum": [
+            "work",
+            "home"
+          ]
         }
       },
       "required": [
@@ -118,15 +170,35 @@
       ]
     },
     "onboarding": {
-      "type": "object",
-      "properties": {
-        "prompt": {
-          "type": "string",
-          "minLength": 1
+      "anyOf": [
+        {
+          "type": "boolean",
+          "const": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "prompt"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9:_-]*$"
+            }
+          },
+          "required": [
+            "command"
+          ]
         }
-      },
-      "required": [
-        "prompt"
       ]
     },
     "connections": {

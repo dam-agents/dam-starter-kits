@@ -13,6 +13,7 @@ docsUrl: https://github.com/dam-agents/code-guardian
 seed:
   url: https://github.com/dam-agents/code-guardian
   ref: main
+  into: home
 connections:
   - accepts: [github, github-enterprise]
     required: true
