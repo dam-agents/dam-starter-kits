@@ -38,7 +38,7 @@ jobs:
 
             const listed = new Set();
             for (const entry of index?.kits ?? []) {
-              if (entry.gitUrl) continue;
+              if (entry.url || entry.gitUrl) continue;
               const dir = entry.path;
               listed.add(dir);
               const file = join(dir, "kit.yaml");
