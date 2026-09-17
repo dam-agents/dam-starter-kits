@@ -1,15 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/dam-agents/dam-starter-kits/main/catalog.schema.json
-# The kits this catalog offers. Each entry points at a directory holding a
-# kit.yaml, or at another repository with a pinned ref.
+# The kits this catalog offers. An entry either names a directory here holding
+# a kit.yaml, or names another repository that carries its own.
 #
-# An entry that names no ref is pinned to a commit by the platform when it
-# refreshes the catalog, so a kit always resolves to exact contents even
-# though this file moves.
+# A repository is named the same way everywhere the platform names one: a plain
+# `url`, and `ref` when you want a particular branch, tag or commit. A version
+# is never written into the URL — a URL carrying one is refused rather than
+# read at the default branch.
 #
-# A kit whose code is a repository of its own is listed by `gitUrl` rather than
-# copied here, so the kit and the code it installs are one commit and one
-# review. The wiki toolkits below are listed that way.
+# An entry with no `ref` is pinned to a commit by the platform each time it
+# refreshes, so a kit always resolves to exact contents even though this file
+# moves.
 kits:
   - path: kits/code-reviewer
-  - gitUrl: https://github.com/dam-agents/llm-wiki-v2
-  - gitUrl: https://github.com/dam-agents/plain-wiki
+  - url: https://github.com/dam-agents/llm-wiki-v2
+  - url: https://github.com/dam-agents/plain-wiki
