@@ -5,5 +5,11 @@
 # An entry that names no ref is pinned to a commit by the platform when it
 # refreshes the catalog, so a kit always resolves to exact contents even
 # though this file moves.
+#
+# A kit whose code is a repository of its own is listed by `gitUrl` rather than
+# copied here, so the kit and the code it installs are one commit and one
+# review. The wiki toolkits below are listed that way.
 kits:
   - path: kits/code-reviewer
+  - gitUrl: https://github.com/dam-agents/llm-wiki-v2
+  - gitUrl: https://github.com/dam-agents/plain-wiki
