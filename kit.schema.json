@@ -166,7 +166,19 @@
             "home"
           ]
         }
-      }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "required": [
+            "self"
+          ]
+        }
+      ]
     },
     "onboarding": {
       "anyOf": [
