@@ -73,5 +73,5 @@ against when it reads a kit, not a copy maintained by hand.
 | `skills` | Skills from other repositories, installed when the agent is created |
 | `connections` | What the agent needs access to, and whether it is required |
 | `channels` | Where the team can talk to it |
-| `schedules` | Recurring work, created with the author's defaults |
+| `schedules` | Recurring work, created with the author's defaults. A schedule may carry a `precheck` — a shell command run in the agent's workspace before each fire, where exit 0 runs the task and exit 1 skips that occurrence without waking a model |
 | `env`, `hibernationTimeoutMin`, `parameters` | Fixed environment, idle behaviour, and the values onboarding will ask the user for |
