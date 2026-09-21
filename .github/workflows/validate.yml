@@ -51,7 +51,7 @@ jobs:
               }
               console.log("ok " + file);
             }
-            for (const d of readdirSync("kits")) {
+            for (const d of existsSync("kits") ? readdirSync("kits") : []) {
               if (!listed.has("kits/" + d)) fail("kits/" + d + " is not listed in catalog.yaml");
             }
           '

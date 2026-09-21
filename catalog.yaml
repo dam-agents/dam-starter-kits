@@ -11,6 +11,6 @@
 # refreshes, so a kit always resolves to exact contents even though this file
 # moves.
 kits:
-  - path: kits/code-reviewer
+  - url: https://github.com/dam-agents/code-guardian
   - url: https://github.com/dam-agents/llm-wiki-v2
   - url: https://github.com/dam-agents/plain-wiki
