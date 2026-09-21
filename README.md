@@ -9,8 +9,13 @@ agent is one click instead of a checklist.
 
 ```
 catalog.yaml            the index: which kits this catalog offers
-kits/<id>/kit.yaml      one kit
+kits/<id>/kit.yaml      a kit with no repository of its own
 ```
+
+An entry either names a repository that carries its own `kit.yaml` — the usual
+shape, where one commit pins the kit, the definition it describes and the
+skills bundled with it together — or a directory here, for a kit with nothing
+of its own to sit beside.
 
 ## Pointing an install at this catalog
 
@@ -21,8 +26,8 @@ starterKits:
       url: https://github.com/dam-agents/dam-starter-kits
 ```
 
-Kits are addressed `<catalog>/<kit>`, so this one's code reviewer is
-`curated/code-reviewer`. Two catalogs may ship a kit of the same id without one
+Kits are addressed `<catalog>/<kit>`, so this one's code review agent is
+`curated/code-guardian`. Two catalogs may ship a kit of the same id without one
 hiding the other.
 
 The platform re-reads every catalog periodically, so **adding a kit here needs
@@ -32,13 +37,23 @@ reproducible kits.
 
 ## Adding a kit
 
-1. Add `kits/<id>/kit.yaml`.
-2. List it in `catalog.yaml`.
-3. Open a pull request. CI validates every kit against `kit.schema.json`.
+1. Add `kit.yaml` to the repository the kit describes, and list that
+   repository in `catalog.yaml`:
 
-A kit's `id` must match its directory name. Both YAML files carry a
-`# yaml-language-server: $schema=` line, so an editor with the YAML extension
-validates and autocompletes them as you type.
+   ```yaml
+   kits:
+     - url: https://github.com/<org>/<repo>
+   ```
+
+   A kit with no repository of its own goes in `kits/<id>/kit.yaml` here
+   instead, listed as `- path: kits/<id>`; its `id` must match the directory
+   name, and CI validates it against `kit.schema.json`.
+2. Open a pull request.
+
+Every `kit.yaml` carries a `# yaml-language-server: $schema=` line pointing at
+`kit.schema.json` here, and so does this catalog, so an editor with the YAML
+extension validates and autocompletes them as you type — wherever the file
+lives.
 
 `kit.schema.json` and `catalog.schema.json` are **generated** from the
 platform's own schema — they are the same definition the platform validates
