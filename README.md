@@ -70,6 +70,7 @@ against when it reads a kit, not a copy maintained by hand.
 | `resources` | CPU and memory limits and workspace disk, when it needs more than the default |
 | `backend` | `vm` when the work needs a machine rather than a pod, such as running containers or a cluster inside the sandbox |
 | `egressPreset` | The agent's web access: `none`, `trusted` (the default: npm, PyPI, GitHub, Anthropic and similar) or `all`. The owner can change it after create |
+| `egressRules` | Host rules added on top of the preset, in the shape a hand-written rule takes: `host`, optional `port`, `method`, `pathPattern`, and `verdict` (`allow` by default, or `deny`) |
 | `seed` | The definition repository the agent clones during onboarding |
 | `bundledSkills.path` | Directory in the definition holding skills. Names and descriptions are read from each `SKILL.md`, never copied here |
 | `skills` | Skills from other repositories, installed when the agent is created |
