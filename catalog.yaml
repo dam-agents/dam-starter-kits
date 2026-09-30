@@ -15,3 +15,4 @@ kits:
   - url: https://github.com/dam-agents/llm-wiki-v2
   - url: https://github.com/dam-agents/personal-assistant
   - url: https://github.com/dam-agents/plain-wiki
+  - url: https://github.com/dam-agents/cve-manager
