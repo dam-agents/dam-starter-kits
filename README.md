@@ -37,18 +37,52 @@ reproducible kits.
 
 ## Adding a kit
 
-1. Add `kit.yaml` to the repository the kit describes, and list that
-   repository in `catalog.yaml`:
+Anyone can propose a kit for this catalog with a pull request. Once it is
+merged, the kit is on the **Starter Kits** page for every user of the
+deployments that read this catalog.
+
+1. Add `kit.yaml` to the root of the repository the kit describes. The
+   repository must be public on github.com, and so must any repository the
+   kit seeds the agent from. Before you open the pull request, try the kit:
+   paste the repository's link into **Import from link** on **Starter Kits**
+   and create an agent from it. That kit is used only by you.
+2. List the repository at the end of `kits:` in `catalog.yaml`. For a kit you
+   built, name yourself as its `publisher`:
 
    ```yaml
    kits:
-     - url: https://github.com/<org>/<repo>
+     # ...existing kits...
+     - url: https://github.com/<you>/<repo>
+       publisher:
+         name: Your Name
+         url: https://github.com/<you>
    ```
+
+   - `url` is the kit's repository. Don't put a branch or a version in it;
+     add `ref` to pin one.
+   - `publisher.name` is shown under the kit's title as **By Your Name**, so
+     users can tell your kit from the DAM team's, which read **By DAM**. It
+     can be a person or a team, up to 80 characters.
+   - `publisher.url` is optional and must start with `https://`. In the kit's
+     window, the name links to it.
 
    A kit with no repository of its own goes in `kits/<id>/kit.yaml` here
    instead, listed as `- path: kits/<id>`; its `id` must match the directory
    name, and CI validates it against `kit.schema.json`.
-2. Open a pull request.
+3. Open a pull request. Say what the kit does and who it's for.
+
+> [!IMPORTANT]
+> An entry without `publisher` is shown as a kit from the DAM team. Leave it
+> out only for the team's own kits. Only this catalog says who publishes a
+> kit; `kit.yaml` has no field for it, so a kit can't claim to be the team's.
+
+After the merge, the kit appears at the platform's next catalog refresh,
+within about 10 minutes. To update it, push to the kit's repository: new
+agents use the new commit after the next refresh. To change your name or
+link, or remove the kit, open a pull request that edits or deletes its entry.
+
+For the full guide, see
+[Create your own starter kit](https://dam-agents.github.io/docs/guides/create-starter-kit/#share-it).
 
 Every `kit.yaml` carries a `# yaml-language-server: $schema=` line pointing at
 `kit.schema.json` here, and so does this catalog, so an editor with the YAML
