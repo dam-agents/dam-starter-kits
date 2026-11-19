@@ -29,3 +29,7 @@ kits:
     publisher:
       name: Edgar Bruney
       url: https://github.com/BrUn3y
+  - url: https://github.com/xjacka/design-desk
+    publisher:
+      name: Lukáš Janeček
+      url: https://github.com/xjacka
