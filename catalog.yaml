@@ -23,4 +23,7 @@ kits:
   - url: https://github.com/dam-agents/designer
   - url: https://github.com/dam-agents/hamiltonian-simulations
   - url: https://github.com/adigidh/software-factory-starter-kit
+    publisher:
+      name: Aditya Gidh
+      url: https://github.com/adigidh
   - url: https://github.com/dam-agents/micro-manager
