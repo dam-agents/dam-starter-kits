@@ -37,3 +37,7 @@ kits:
     publisher:
       name: Lukáš Janeček
       url: https://github.com/xjacka
+  - url: https://github.com/adigidh/production-readiness-starter-kit
+    publisher:
+      name: Aditya Gidh
+      url: https://github.com/adigidh
