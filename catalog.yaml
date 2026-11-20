@@ -41,3 +41,7 @@ kits:
     publisher:
       name: Aditya Gidh
       url: https://github.com/adigidh
+  - url: https://github.com/adigidh/production-readiness-starter-kit
+    publisher:
+      name: Aditya Gidh
+      url: https://github.com/adigidh
