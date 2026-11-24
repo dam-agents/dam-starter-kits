@@ -44,3 +44,7 @@ kits:
     publisher:
       name: Aditya Gidh
       url: https://github.com/adigidh
+  - url: https://github.com/adigidh/bug-triage-starter-kit
+    publisher:
+      name: Aditya Gidh
+      url: https://github.com/adigidh
