@@ -20,7 +20,6 @@ kits:
   - url: https://github.com/dam-agents/docs-maintainer
   - url: https://github.com/dam-agents/workstream-assistant
   - url: https://github.com/dam-agents/slack-knowledge-sync
-  - url: https://github.com/dam-agents/designer
   - url: https://github.com/dam-agents/hamiltonian-simulations
   - url: https://github.com/adigidh/software-factory-starter-kit
     publisher:
