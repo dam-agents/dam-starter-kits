@@ -44,3 +44,7 @@ kits:
     publisher:
       name: Aditya Gidh
       url: https://github.com/adigidh
+  - url: https://github.com/simon-gentner/dam-kit-slack-search
+    publisher:
+      name: Simon Gentner
+      url: https://github.com/simon-gentner
